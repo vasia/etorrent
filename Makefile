@@ -11,6 +11,7 @@ compile:
 
 tags:
 	cd apps/etorrent/src && $(MAKE) tags
+	cd apps/utp/src && $(MAKE) tags
 
 eunit:
 	rebar skip_deps=true eunit
