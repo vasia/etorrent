@@ -59,13 +59,17 @@ CT_RUN=rel/etorrent/erts-*/bin/ct_run
 
 common_test: rel
 	mkdir -p logs
+# Unpack stuff.
+	rm -fr rel/etorrent/lib/etorrent-*/ebin
+	cd rel/etorrent/lib && unzip -o etorrent-*.ez && unzip -o utp-*.ez
+# Run cover test
 	${CT_RUN} -spec etorrent_test.spec
 
 cover_test:
 	mkdir -p logs
 # Unpack stuff.
 	rm -fr rel/etorrent/lib/etorrent-*/ebin
-	cd rel/etorrent/lib && unzip -o etorrent-*.ez
+	cd rel/etorrent/lib && unzip -o etorrent-*.ez && unzip -o utp-*.ez
 # Run cover test
 	${CT_RUN} -spec etorrent_test.spec -cover etorrent.coverspec
 
