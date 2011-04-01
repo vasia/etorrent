@@ -62,16 +62,10 @@ common_test: rel
 # Unpack stuff.
 	rm -fr rel/etorrent/lib/etorrent-*/ebin
 	cd rel/etorrent/lib && unzip -o etorrent-*.ez && unzip -o utp-*.ez
+	mkdir -p rel/etorrent/lib/etorrent-*/src && \
+		cp -r apps/etorrent/src/* rel/etorrent/lib/etorrent-*/src
 # Run cover test
 	${CT_RUN} -spec etorrent_test.spec
-
-cover_test:
-	mkdir -p logs
-# Unpack stuff.
-	rm -fr rel/etorrent/lib/etorrent-*/ebin
-	cd rel/etorrent/lib && unzip -o etorrent-*.ez && unzip -o utp-*.ez
-# Run cover test
-	${CT_RUN} -spec etorrent_test.spec -cover etorrent.coverspec
 
 console:
 	dev/etorrent-dev/bin/etorrent console \
